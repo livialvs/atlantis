@@ -1,2 +1,5 @@
-# atlantis
-Repositório destinado às listas da matéria de Técnicas de Programação II.
+<h1 style="text-align: center">Atlantis 🌟</h1>
+
+> Livia Alves de Faria - 3°SEM/DSM
+>
+> Técnicas de Programação II
