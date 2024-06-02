@@ -1,8 +1,10 @@
-import Processo from "../abstracoes/processo";
-import Armazem from "../dominio/armazem";
-import Cliente from "../modelos/cliente";
-import CadastrarDocumentosCliente from "./cadastrarDocumentosCliente";
+import Processo from "../../abstracoes/processo";
+import Armazem from "../../dominio/armazem";
+import Cliente from "../../modelos/cliente";
+import CadastrarDocumentosCliente from "./cadastroDocumentosCliente";
 import CadastroEnderecoTitular from "./cadastroEnderecoTitular";
+import CadastroTelefoneTitular from "./cadastroTelefoneTitular";
+
 
 export default class CadastroClienteTitular extends Processo {
     processar(): void {
@@ -13,6 +15,9 @@ export default class CadastroClienteTitular extends Processo {
         let cliente = new Cliente(nome, nomeSocial, dataNascimento)
 
         this.processo = new CadastroEnderecoTitular(cliente)
+        this.processo.processar()
+
+        this.processo = new CadastroTelefoneTitular(cliente)
         this.processo.processar()
 
         this.processo = new CadastrarDocumentosCliente(cliente)
