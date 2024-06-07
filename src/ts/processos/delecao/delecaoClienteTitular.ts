@@ -3,7 +3,7 @@ import Armazem from "../../dominio/armazem";
 import { TipoDocumento } from "../../enumeracoes/TipoDocumento";
 import Cliente from "../../modelos/cliente";
 
-export default class DeletarCliente extends Processo {
+export default class DelecaoClienteTitular extends Processo {
   private clientes: Cliente[];
 
   constructor() {
@@ -40,16 +40,27 @@ export default class DeletarCliente extends Processo {
     if (clienteEncontrado) {
       const confirmacao = this.entrada.receberTexto(`Você deseja mesmo deletar o cliente ${clienteEncontrado.Nome}? (s/n):`);
       if (confirmacao.toLowerCase() === "s") {
-        const index = this.clientes.indexOf(clienteEncontrado);
-        if (index > -1) {
-          this.clientes.splice(index, 1);
-          console.log(`Cliente ${clienteEncontrado.Nome} excluído com sucesso!`);
-        }
+        this.deletarClienteETodosOsDependentes(clienteEncontrado);
+        console.log(`Cliente ${clienteEncontrado.Nome} e seus dependentes foram excluídos com sucesso!`);
       } else {
         console.log("Operação cancelada.");
       }
     } else {
       console.log("Cliente não encontrado.");
+    }
+  }
+
+  private deletarClienteETodosOsDependentes(cliente: Cliente): void {
+    cliente.Dependentes.forEach(dependente => {
+      const indexDependente = this.clientes.indexOf(dependente);
+      if (indexDependente > -1) {
+        this.clientes.splice(indexDependente, 1);
+      }
+    });
+
+    const index = this.clientes.indexOf(cliente);
+    if (index > -1) {
+      this.clientes.splice(index, 1);
     }
   }
 }

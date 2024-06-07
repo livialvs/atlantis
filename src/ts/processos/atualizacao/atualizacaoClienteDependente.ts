@@ -2,16 +2,12 @@ import Processo from "../../abstracoes/processo";
 import Armazem from "../../dominio/armazem";
 import { TipoDocumento } from "../../enumeracoes/TipoDocumento";
 import MenuEditarClienteDependente from "../../menus/menuEditarClienteDependente";
-import MenuEditarClienteTitular from "../../menus/menuEditarClienteTitular";
 import Cliente from "../../modelos/cliente";
 import CadastrarDocumentosCliente from "../cadastro/cadastroDocumentosCliente";
-import CadastroTelefoneTitular from "../cadastro/cadastroTelefoneTitular";
 import AtualizarDataNascimento from "./atualizacaoDataNascimento";
 import AtualizarDocumento from "./atualizacaoDocumentos";
-import AtualizarEndereco from "./atualizacaoEndereco";
 import AtualizarNome from "./atualizacaoNome";
 import AtualizarNomeSocial from "./atualizacaoNomeSocial";
-import AtualizarTelefone from "./atualizacaoTelefone";
 
 export default class AtualizarClienteDependente extends Processo {
     private clientes: Cliente[];
@@ -26,11 +22,22 @@ export default class AtualizarClienteDependente extends Processo {
         console.clear();
         let cpfDependente = this.entrada.receberTexto("Digite o CPF do dependente para editar:");
 
-        let clienteDependente = this.clientes.find(cliente =>
-            cliente.Documentos.some(dadosCPF =>
-                dadosCPF.Numero === cpfDependente && dadosCPF.Tipo === TipoDocumento.CPF
-            )
-        );
+        let clienteDependente: Cliente | null = null;
+        let clienteTitular: Cliente | null = null;
+
+        for (const cliente of this.clientes) {
+            for (const dependente of cliente.Dependentes) {
+                for (const documento of dependente.Documentos) {
+                    if (documento.Tipo === TipoDocumento.CPF && documento.Numero === cpfDependente) {
+                        clienteDependente = dependente;
+                        clienteTitular = cliente;
+                        break;
+                    }
+                }
+                if (clienteDependente) break;
+            }
+            if (clienteDependente) break;
+        }
 
         if (!clienteDependente) {
             console.log("Cliente dependente não encontrado.");
