@@ -5,6 +5,8 @@ import MenuEditarClienteTitular from "../../menus/menuEditarClienteTitular";
 import Cliente from "../../modelos/cliente";
 import CadastrarDocumentosCliente from "../cadastro/cadastroDocumentosCliente";
 import CadastroTelefoneTitular from "../cadastro/cadastroTelefoneTitular";
+import DelecaoDocumento from "../delecao/delecaoDocumento";
+import DelecaoTelefone from "../delecao/delecaoTelefone";
 import AtualizarDataNascimento from "./atualizacaoDataNascimento";
 import AtualizarDocumento from "./atualizacaoDocumentos";
 import AtualizarEndereco from "./atualizacaoEndereco";
@@ -73,6 +75,14 @@ export default class AtualizarClienteTitular extends Processo {
           break;
         case 8:
           this.processo = new CadastroTelefoneTitular(clienteTitular);
+          this.processo.processar();
+          break;
+        case 9:
+          this.processo = new DelecaoDocumento(clienteTitular);
+          this.processo.processar();
+          break;
+        case 10:
+          this.processo = new DelecaoTelefone(clienteTitular);
           this.processo.processar();
           break;
         case 0:

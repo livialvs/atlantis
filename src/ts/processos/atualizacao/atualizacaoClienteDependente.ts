@@ -4,6 +4,7 @@ import { TipoDocumento } from "../../enumeracoes/TipoDocumento";
 import MenuEditarClienteDependente from "../../menus/menuEditarClienteDependente";
 import Cliente from "../../modelos/cliente";
 import CadastrarDocumentosCliente from "../cadastro/cadastroDocumentosCliente";
+import DelecaoDocumento from "../delecao/delecaoDocumento";
 import AtualizarDataNascimento from "./atualizacaoDataNascimento";
 import AtualizarDocumento from "./atualizacaoDocumentos";
 import AtualizarNome from "./atualizacaoNome";
@@ -69,6 +70,10 @@ export default class AtualizarClienteDependente extends Processo {
                     break;
                 case 5:
                     this.processo = new CadastrarDocumentosCliente(clienteDependente);
+                    this.processo.processar();
+                    break;
+                case 6:
+                    this.processo = new DelecaoDocumento(clienteDependente);
                     this.processo.processar();
                     break;
                 case 0:

@@ -14,6 +14,8 @@ export default class MenuEditarClienteTitular implements Menu {
         console.log(`| 6 - Telefones`)
         console.log(`| 7 - Adicionar documentos`)
         console.log(`| 8 - Adicionar telefones`)
+        console.log(`| 9 - Remover documentos`)
+        console.log(`| 10 - Remover telefones`)
         console.log(`| 0 - Sair`)
         console.log(`----------------------`)
     }

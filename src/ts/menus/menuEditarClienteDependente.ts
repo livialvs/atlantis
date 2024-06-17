@@ -11,6 +11,7 @@ export default class MenuEditarClienteDependente implements Menu {
         console.log(`| 3 - Data de Nascimento`)
         console.log(`| 4 - Documentos`)
         console.log(`| 5 - Adicionar documentos`)
+        console.log(`| 6 - Remover documentos`)
         console.log(`| 0 - Sair`)
         console.log(`----------------------`)
     }
