@@ -1,9 +1,8 @@
-import Processo from "../abstracoes/processo";
-import DiretorCasalSimples from "../diretores/diretorCasalSimples";
-import Armazem from "../dominio/armazem";
-import MenuTipoCadastroAcomodacao from "../menus/menuTipoCadastroAcomodacao";
-import Acomodacao from "../modelos/acomodacao";
-import Cliente from "../modelos/cliente";
+import Processo from "../../abstracoes/processo";
+import Armazem from "../../dominio/armazem";
+import MenuTipoCadastroAcomodacao from "../../menus/menuTipoCadastroAcomodacao";
+import Acomodacao from "../../modelos/acomodacao";
+import Cliente from "../../modelos/cliente";
 
 export default class CadastrarAcomodacaoCliente extends Processo {
     private acomodacoes: Acomodacao[];
