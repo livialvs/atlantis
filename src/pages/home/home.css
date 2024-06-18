@@ -1,0 +1,43 @@
+.container {
+    display: fixed;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.acomodacoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    justify-content: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto;
+    padding: 20px 0;
+}
+
+.sidebar-footer {
+    position: absolute; 
+    bottom: 20px; 
+    width: 100%;
+  }
+
+@media (max-width: 1000px) {
+    .acomodacoes {
+        grid-template-columns: 1fr;
+    }
+}
